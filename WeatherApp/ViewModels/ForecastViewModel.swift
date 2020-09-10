@@ -22,7 +22,7 @@ class ForecastViewModel {
 
         let days = self.enumerateDaysFromCurrent(daysCount: 5)
         days.forEach { (key) in
-            guard let value = groups[key] else { return }
+            guard let value = groups[key], value.count == 0 else { return }
             self.forecast.append((key: key, value: value))
         }
     }
@@ -32,8 +32,8 @@ class ForecastViewModel {
         dateFormatter.dateFormat = Strings.dayNameDateFormat
         var days = [String]()
         for dayIndex in 0...daysCount {
-            let day = Calendar.current.date(byAdding: .day, value: dayIndex, to: Date())
-            days.append(dateFormatter.string(from: day!))
+            guard let day = Calendar.current.date(byAdding: .day, value: dayIndex, to: Date()) else { continue }
+            days.append(dateFormatter.string(from: day))
         }
         
         return days

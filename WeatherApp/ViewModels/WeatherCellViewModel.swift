@@ -11,8 +11,8 @@ class WeatherCellViewModel {
     init(_ weatherItem: WeatherItem) {
         self.weatherItem = weatherItem
         
-        iconUrl = String(format: ApiConstants.iconsUrl, weatherItem.weatherOverview.first!.icon)
-        weatherDescription = weatherItem.weatherOverview.first!.description
+        iconUrl = String(format: ApiConstants.iconsUrl, weatherItem.weatherOverview.first?.icon ?? String.empty)
+        weatherDescription = weatherItem.weatherOverview.first?.description ?? String.empty
         time = Date.convertUnitTime(weatherItem.dateTime, withMinutes: true)
         temperature = "\(Int(weatherItem.weatherDetailedInfo.temp))\(Strings.celsiusMarker)"
     }

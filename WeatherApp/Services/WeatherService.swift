@@ -23,14 +23,15 @@ class WeatherService {
     }
     
     private func createRequest(_ weatherRequest: WeatherRequest) -> URLRequest? {
-        guard var components = URLComponents(string: "\(ApiConstants.baseApiUrl)forecast")
-            else { return nil }
+        guard var components = URLComponents(string: "\(ApiConstants.baseApiUrl)forecast") else { return nil }
         components.queryItems = [
             URLQueryItem(name: "lat", value: String(weatherRequest.latitude)),
             URLQueryItem(name: "lon", value: String(weatherRequest.longitude)),
             URLQueryItem(name: "appid", value: String(weatherRequest.appid)),
             URLQueryItem(name: "units", value: String(weatherRequest.units)),
         ]
-        return URLRequest(url: components.url!)
+        
+        guard let url = components.url else { return nil }
+        return URLRequest(url: url)
     }
 }

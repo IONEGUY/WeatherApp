@@ -15,7 +15,6 @@
 		FA26DFB72506F741005A4FB5 /* ActivityIndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26DFB62506F741005A4FB5 /* ActivityIndicatorHelper.swift */; };
 		FA26DFB92506FC70005A4FB5 /* CashHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26DFB82506FC70005A4FB5 /* CashHelper.swift */; };
 		FA291AAF25002A2E006D45EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA291AAE25002A2E006D45EE /* AppDelegate.swift */; };
-		FA291AB125002A2E006D45EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA291AB025002A2E006D45EE /* SceneDelegate.swift */; };
 		FA291AB325002A2E006D45EE /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA291AB225002A2E006D45EE /* MainTabBarViewController.swift */; };
 		FA291AB825002A2F006D45EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA291AB725002A2F006D45EE /* Assets.xcassets */; };
 		FA291ABB25002A2F006D45EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA291AB925002A2F006D45EE /* LaunchScreen.storyboard */; };
@@ -28,7 +27,6 @@
 		FA2A71BD250630E200FAA77B /* WeatherOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71BC250630E200FAA77B /* WeatherOverview.swift */; };
 		FA2A71BF250630F900FAA77B /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71BE250630F900FAA77B /* Wind.swift */; };
 		FA2A71C12506312D00FAA77B /* Rain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71C02506312D00FAA77B /* Rain.swift */; };
-		FA2A71C5250632F200FAA77B /* AppSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71C2250632F200FAA77B /* AppSecrets.swift */; };
 		FA2A71C6250632F200FAA77B /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71C3250632F200FAA77B /* ApiConstants.swift */; };
 		FA2A71C7250632F200FAA77B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71C4250632F200FAA77B /* Strings.swift */; };
 		FA2A71CD2506338E00FAA77B /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71C82506338E00FAA77B /* UIImageViewExtensions.swift */; };
@@ -41,6 +39,7 @@
 		FA2A71DC25067F4900FAA77B /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A71DB25067F4900FAA77B /* Initializable.swift */; };
 		FA4D69EE25061AD7003F531D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4D69ED25061AD6003F531D /* logo.png */; };
 		FA4D69F025061CC5003F531D /* TodayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D69EF25061CC5003F531D /* TodayWeatherViewController.swift */; };
+		FA8EF430250A6FF10096D25A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EF42F250A6FF10096D25A /* LocationManager.swift */; };
 		FAA8E41F2506942100857E84 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8E41E2506942100857E84 /* ForecastTableViewController.swift */; };
 		FAEC2AEB25077C3C0010EFB3 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC2AEA25077C3C0010EFB3 /* ForecastViewModel.swift */; };
 		FAEC2AED250786F70010EFB3 /* TodayWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC2AEC250786F70010EFB3 /* TodayWeatherViewModel.swift */; };
@@ -58,7 +57,6 @@
 		FA26DFB82506FC70005A4FB5 /* CashHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashHelper.swift; sourceTree = "<group>"; };
 		FA291AAB25002A2E006D45EE /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA291AAE25002A2E006D45EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA291AB025002A2E006D45EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA291AB225002A2E006D45EE /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		FA291AB725002A2F006D45EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA291ABA25002A2F006D45EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 		FA2A71BC250630E200FAA77B /* WeatherOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherOverview.swift; sourceTree = "<group>"; };
 		FA2A71BE250630F900FAA77B /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		FA2A71C02506312D00FAA77B /* Rain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rain.swift; sourceTree = "<group>"; };
-		FA2A71C2250632F200FAA77B /* AppSecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
 		FA2A71C3250632F200FAA77B /* ApiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		FA2A71C4250632F200FAA77B /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		FA2A71C82506338E00FAA77B /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
@@ -85,6 +82,7 @@
 		FA2A71DB25067F4900FAA77B /* Initializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializable.swift; sourceTree = "<group>"; };
 		FA4D69ED25061AD6003F531D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FA4D69EF25061CC5003F531D /* TodayWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherViewController.swift; sourceTree = "<group>"; };
+		FA8EF42F250A6FF10096D25A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FAA8E41E2506942100857E84 /* ForecastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewController.swift; sourceTree = "<group>"; };
 		FAEC2AEA25077C3C0010EFB3 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		FAEC2AEC250786F70010EFB3 /* TodayWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				FA291AE525003265006D45EE /* ViewControllers */,
 				FA291AE225003239006D45EE /* Services */,
 				FA291AAE25002A2E006D45EE /* AppDelegate.swift */,
-				FA291AB025002A2E006D45EE /* SceneDelegate.swift */,
 				FA291AB725002A2F006D45EE /* Assets.xcassets */,
 				FA291AB925002A2F006D45EE /* LaunchScreen.storyboard */,
 				FA291ABC25002A2F006D45EE /* Info.plist */,
@@ -167,6 +164,7 @@
 				FA2A71DB25067F4900FAA77B /* Initializable.swift */,
 				FA26DFB62506F741005A4FB5 /* ActivityIndicatorHelper.swift */,
 				FA26DFB82506FC70005A4FB5 /* CashHelper.swift */,
+				FA8EF42F250A6FF10096D25A /* LocationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -205,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				FA2A71C3250632F200FAA77B /* ApiConstants.swift */,
-				FA2A71C2250632F200FAA77B /* AppSecrets.swift */,
 				FA2A71C4250632F200FAA77B /* Strings.swift */,
 			);
 			path = Resources;
@@ -356,8 +353,8 @@
 				FA2A71B525062E8F00FAA77B /* Weather.swift in Sources */,
 				FA26DFB72506F741005A4FB5 /* ActivityIndicatorHelper.swift in Sources */,
 				FA2A71C12506312D00FAA77B /* Rain.swift in Sources */,
+				FA8EF430250A6FF10096D25A /* LocationManager.swift in Sources */,
 				FA2A71D32506400100FAA77B /* WeatherTableViewCell.swift in Sources */,
-				FA2A71C5250632F200FAA77B /* AppSecrets.swift in Sources */,
 				FA291AB325002A2E006D45EE /* MainTabBarViewController.swift in Sources */,
 				FA26DFB42506F629005A4FB5 /* AlertDialogHelper.swift in Sources */,
 				FA2A71CD2506338E00FAA77B /* UIImageViewExtensions.swift in Sources */,
@@ -381,7 +378,6 @@
 				FA2A71C7250632F200FAA77B /* Strings.swift in Sources */,
 				FAA8E41F2506942100857E84 /* ForecastTableViewController.swift in Sources */,
 				FA2A71B325062E4A00FAA77B /* WeatherRequest.swift in Sources */,
-				FA291AB125002A2E006D45EE /* SceneDelegate.swift in Sources */,
 				FA2A71B725062EDA00FAA77B /* WeatherItem.swift in Sources */,
 				FA2A71BF250630F900FAA77B /* Wind.swift in Sources */,
 				FA2A71CE2506338E00FAA77B /* StringExtensions.swift in Sources */,

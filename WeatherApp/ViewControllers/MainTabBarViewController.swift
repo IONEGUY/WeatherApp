@@ -1,39 +1,21 @@
 import UIKit
-import MapKit
 import CoreLocation
 
-class MainTabBarViewController: UITabBarController, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-    private var weatherInitialised = false
+class MainTabBarViewController: UITabBarController {
+    private let locationManager = LocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        
+        locationManager.getCurrentLocation(completion: fetchWeather)
         initTabBarList()
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !weatherInitialised {
-            guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-            fetchWeather(location)
-            weatherInitialised = true
-        }
-    }
-    
+
     private func fetchWeather(_ location: CLLocationCoordinate2D) {
         ActivityIndicatorHelper.show(self.view)
         WeatherService.shared.getWeather(weatherRequest:
             WeatherRequest(latitude: location.latitude,
                            longitude: location.longitude,
-                           appid: AppSecrets.appId,
+                           appid: ApiConstants.appId,
                            units: Strings.unit)) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -42,6 +24,7 @@ class MainTabBarViewController: UITabBarController, CLLocationManagerDelegate {
                     case .failure(_): break
                 }
 
+                ActivityIndicatorHelper.hide()
                 self.viewControllers?.forEach {
                     ($0.children.first as? Initializable)?.initialize(withData: result)
                 }

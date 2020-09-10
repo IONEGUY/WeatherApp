@@ -22,7 +22,7 @@ class WeatherTableViewCell: UITableViewCell {
     private var weatherIcon = UIImageView()
     private var weatherContainer = UIView()
     
-    private var viewModel: WeatherCellViewModel!
+    private var viewModel: WeatherCellViewModel?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,9 +68,9 @@ class WeatherTableViewCell: UITableViewCell {
 
     func initCell(_ weatherItem: WeatherItem) {
         viewModel = WeatherCellViewModel(weatherItem)
-        weatherIcon.initWith(url: viewModel.iconUrl)
-        timeLabel.text = viewModel.time
-        weatherDescription.text = viewModel.weatherDescription
-        temperature.text = viewModel.temperature
+        weatherIcon.initWith(url: viewModel?.iconUrl)
+        timeLabel.text = viewModel?.time
+        weatherDescription.text = viewModel?.weatherDescription
+        temperature.text = viewModel?.temperature
     }
 }

@@ -2,13 +2,12 @@ import Foundation
 import UIKit
 
 class ForecastTableViewController: UITableViewController, Initializable {
-    private var viewModel: ForecastViewModel!
+    private var viewModel: ForecastViewModel?
     private var forecast = [(key: String, value: [WeatherItem])]()
     private var errorHandler = AlertErrorMessageHandler()
 
     func initialize(withData data: Any) {
         guard let result = data as? Result<Weather, Error> else { return }
-        ActivityIndicatorHelper.hide()
         let weatherModel: Weather?
         switch result {
             case .success(let success):
@@ -17,14 +16,12 @@ class ForecastTableViewController: UITableViewController, Initializable {
                 errorHandler.handle(error.localizedDescription)
                 weatherModel = CashHelper.weather
         }
-        DispatchQueue.main.async {
-            self.viewModel = ForecastViewModel(weatherModel)
-            self.createUI()
-        }
+        self.viewModel = ForecastViewModel(weatherModel)
+        self.createUI()
     }
 
     private func createUI() {
-        forecast = viewModel.forecast
+        forecast = viewModel?.forecast ?? [(key: String, value: [WeatherItem])]()
         self.tableView.reloadData()
     }
     
@@ -34,7 +31,10 @@ class ForecastTableViewController: UITableViewController, Initializable {
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         container.backgroundColor = .green
         container.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        label.text = section == 0 ? Strings.today : self.forecast[section].key
+        let dayName = self.forecast[section].key
+        label.text = section == 0 && dayName == Date.getCurrentDayName()
+            ? Strings.today
+            : dayName
         container.addSubview(label)
         return container
     }
@@ -49,7 +49,7 @@ class ForecastTableViewController: UITableViewController, Initializable {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        forecast.count
+        return forecast.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

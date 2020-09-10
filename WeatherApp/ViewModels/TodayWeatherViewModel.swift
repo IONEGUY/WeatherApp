@@ -2,7 +2,6 @@ import Foundation
 
 class TodayWeatherViewModel {
     private var weather: Weather?
-    private var weatherItem: WeatherItem!
     
     var cityName: String?
     var weatherIconUrl: String?
@@ -21,17 +20,18 @@ class TodayWeatherViewModel {
     }
     
     private func initUIData() {
-        guard let weather = weather else { return }
-        weatherItem = weather.list.first
+        guard let weather = weather,
+              let weatherItem = weather.list.first,
+              let weatherOverview = weatherItem.weatherOverview.first else { return }
         let cityInfo = weather.city
         
         weatherSummary = String(format: Strings.weatherDescriptionPattenr,
-                                        weatherItem.weatherOverview.first!.description,
+                                        weatherOverview.description,
                                         Int(weatherItem.weatherDetailedInfo.temp))
-        weatherIconUrl = String(format: ApiConstants.iconsUrl, weatherItem.weatherOverview.first!.icon)
+        weatherIconUrl = String(format: ApiConstants.iconsUrl, weatherOverview.icon)
         cityName = "\(cityInfo.name), \(cityInfo.country)"
         temperature = "\(Int(weatherItem.weatherDetailedInfo.temp))\(Strings.celsiusMarker) |" +
-        " \(weatherItem.weatherOverview.first!.description)"
+        " \(weatherOverview.description)"
         
         rainValue = "\(weatherItem.pop ?? 0 * 100)%"
         windValue = "\(weatherItem.wind?.speed ?? 0)km/h"

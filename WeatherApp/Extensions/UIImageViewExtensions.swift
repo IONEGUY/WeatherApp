@@ -2,8 +2,9 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func initWith(url urlString: String) {
-        guard let url = URL(string: urlString) else { return }
+    func initWith(url urlString: String?) {
+        guard let urlString = urlString,
+              let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 DispatchQueue.main.async {

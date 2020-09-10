@@ -2,7 +2,7 @@ import Foundation
 
 struct WeatherItem: Codable, Hashable {
     static func == (lhs: WeatherItem, rhs: WeatherItem) -> Bool {
-        return getDayComponent(lhs)! == getDayComponent(rhs)!
+        return getDayComponent(lhs) == getDayComponent(rhs)
     }
     
     static private func getDayComponent(_ weatherItem: WeatherItem) -> Int? {

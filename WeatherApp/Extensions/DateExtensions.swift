@@ -12,9 +12,15 @@ extension Date {
     static func convertUnitTime(_ unixTime: Int64, withMinutes: Bool = false, dateFormat: String? = nil) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat == nil
-            ? (withMinutes ? Strings.hoursFormatWithMinutes : Strings.hoursFormat)
-            : dateFormat!
+        dateFormatter.dateFormat = dateFormat ??
+            (withMinutes ? Strings.hoursFormatWithMinutes : Strings.hoursFormat)
+        return dateFormatter.string(from: date)
+    }
+    
+    static func getCurrentDayName() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Strings.dayNameDateFormat
         return dateFormatter.string(from: date)
     }
 }

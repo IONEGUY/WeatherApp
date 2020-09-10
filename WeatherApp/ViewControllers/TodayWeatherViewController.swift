@@ -27,8 +27,8 @@ class TodayWeatherViewController: UIViewController, Initializable {
     }()
     
     private var topOffset = 70
-    private var weatherItem: WeatherItem!
-    private var cityInfo: City!
+    private var weatherItem: WeatherItem?
+    private var cityInfo: City?
     private var didSetupConstraints = false
     private var viewModel: TodayWeatherViewModel?
     private var errorHandler = AlertErrorMessageHandler()
@@ -51,7 +51,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
         view.setNeedsUpdateConstraints()
     }
     
-    @objc private func shareButtonPressed(sender: UIButton!) {
+    @objc private func shareButtonPressed() {
         let shareData = [ viewModel?.weatherSummary ]
         let activityViewController = UIActivityViewController(activityItems: shareData as [Any], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
@@ -96,7 +96,6 @@ class TodayWeatherViewController: UIViewController, Initializable {
     
     func initialize(withData data: Any) {
         guard let result = data as? Result<Weather, Error> else { return }
-        ActivityIndicatorHelper.hide()
         let weatherModel: Weather?
         switch result {
             case .success(let success):
@@ -106,10 +105,8 @@ class TodayWeatherViewController: UIViewController, Initializable {
                 errorHandler.handle(error.localizedDescription)
                 weatherModel = CashHelper.weather
         }
-        DispatchQueue.main.async {
-            self.viewModel = TodayWeatherViewModel(weatherModel)
-            self.createUI()
-        }
+        self.viewModel = TodayWeatherViewModel(weatherModel)
+        self.createUI()
     }
     
     private func createUI() {
