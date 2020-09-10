@@ -43,6 +43,7 @@
 		FAA8E41F2506942100857E84 /* ForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8E41E2506942100857E84 /* ForecastTableViewController.swift */; };
 		FAEC2AEB25077C3C0010EFB3 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC2AEA25077C3C0010EFB3 /* ForecastViewModel.swift */; };
 		FAEC2AED250786F70010EFB3 /* TodayWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC2AEC250786F70010EFB3 /* TodayWeatherViewModel.swift */; };
+		FAED7E06250AC3EF00E2C1E5 /* splash_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAED7E05250AC3EF00E2C1E5 /* splash_image.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		FAA8E41E2506942100857E84 /* ForecastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewController.swift; sourceTree = "<group>"; };
 		FAEC2AEA25077C3C0010EFB3 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		FAEC2AEC250786F70010EFB3 /* TodayWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherViewModel.swift; sourceTree = "<group>"; };
+		FAED7E05250AC3EF00E2C1E5 /* splash_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splash_image.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		FA291AAD25002A2E006D45EE /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FAED7E05250AC3EF00E2C1E5 /* splash_image.jpg */,
 				FA291AE425003259006D45EE /* Extensions */,
 				FA2A71D82506714200FAA77B /* ViewModels */,
 				FA2A71B125062E2400FAA77B /* Models */,
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAED7E06250AC3EF00E2C1E5 /* splash_image.jpg in Resources */,
 				FA291ABB25002A2F006D45EE /* LaunchScreen.storyboard in Resources */,
 				FA291AB825002A2F006D45EE /* Assets.xcassets in Resources */,
 				FA4D69EE25061AD7003F531D /* logo.png in Resources */,
