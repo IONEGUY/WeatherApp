@@ -20,20 +20,22 @@ class ForecastViewModel {
             Date.convertUnitTime($0.dateTime, dateFormat: Strings.dayNameDateFormat)
         })
 
-        self.enumerateDays().forEach { (key) in
+        let days = self.enumerateDaysFromCurrent(daysCount: 5)
+        days.forEach { (key) in
             guard let value = groups[key] else { return }
             self.forecast.append((key: key, value: value))
         }
     }
     
-    private func enumerateDays() -> [String] {
+    private func enumerateDaysFromCurrent(daysCount: Int) -> [String] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Strings.dayNameDateFormat
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let dayOfWeek = calendar.component(.weekday, from: today) - 1
-        let weekdays = calendar.range(of: .weekday, in: .weekOfYear, for: today)!
-        return (weekdays.lowerBound ..< weekdays.upperBound).compactMap {
-            dateFormatter.string(from: calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: today)!) }
+        var days = [String]()
+        for dayIndex in 0...daysCount {
+            let day = Calendar.current.date(byAdding: .day, value: dayIndex, to: Date())
+            days.append(dateFormatter.string(from: day!))
+        }
+        
+        return days
     }
 }

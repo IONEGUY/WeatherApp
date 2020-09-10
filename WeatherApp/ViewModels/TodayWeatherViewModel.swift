@@ -12,6 +12,7 @@ class TodayWeatherViewModel {
     var precipiationValue: String?
     var directionValue: String?
     var pressureValue: String?
+    var weatherSummary: String?
     
     init(_ weather: Weather?) {
         self.weather = weather
@@ -24,6 +25,9 @@ class TodayWeatherViewModel {
         weatherItem = weather.list.first
         let cityInfo = weather.city
         
+        weatherSummary = String(format: Strings.weatherDescriptionPattenr,
+                                        weatherItem.weatherOverview.first!.description,
+                                        Int(weatherItem.weatherDetailedInfo.temp))
         weatherIconUrl = String(format: ApiConstants.iconsUrl, weatherItem.weatherOverview.first!.icon)
         cityName = "\(cityInfo.name), \(cityInfo.country)"
         temperature = "\(Int(weatherItem.weatherDetailedInfo.temp))\(Strings.celsiusMarker) |" +

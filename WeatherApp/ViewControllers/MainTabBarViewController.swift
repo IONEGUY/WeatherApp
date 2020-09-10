@@ -3,7 +3,8 @@ import MapKit
 import CoreLocation
 
 class MainTabBarViewController: UITabBarController, CLLocationManagerDelegate {
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
+    private var weatherInitialised = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,11 @@ class MainTabBarViewController: UITabBarController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        fetchWeather(location)
+        if !weatherInitialised {
+            guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            fetchWeather(location)
+            weatherInitialised = true
+        }
     }
     
     private func fetchWeather(_ location: CLLocationCoordinate2D) {

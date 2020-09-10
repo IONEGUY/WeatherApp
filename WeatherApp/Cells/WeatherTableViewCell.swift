@@ -7,14 +7,14 @@ class WeatherTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 15.0)
         return label
     }()
-    private var weatherDescription: UILabel = {
+    private var temperature: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 30.0)
         label.textColor = .blue
         label.textAlignment = .center
         return label
     }()
-    private var temperature: UILabel = {
+    private var weatherDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12.0)
         return label

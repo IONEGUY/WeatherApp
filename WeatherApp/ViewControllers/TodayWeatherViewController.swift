@@ -52,10 +52,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
     }
     
     @objc private func shareButtonPressed(sender: UIButton!) {
-        let weatherDescription = String(format: Strings.weatherDescriptionPattenr,
-                                        weatherItem.weatherOverview.first!.description,
-                                        Int(weatherItem.weatherDetailedInfo.temp))
-        let shareData = [ weatherDescription ]
+        let shareData = [ viewModel?.weatherSummary ]
         let activityViewController = UIActivityViewController(activityItems: shareData as [Any], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop,
