@@ -22,7 +22,7 @@ class ForecastViewModel {
 
         let days = self.enumerateDaysFromCurrent(daysCount: 5)
         days.forEach { (key) in
-            guard let value = groups[key], value.count == 0 else { return }
+            guard let value = groups[key] else { return }
             self.forecast.append((key: key, value: value))
         }
     }

@@ -6,8 +6,8 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.getCurrentLocation(completion: fetchWeather)
         initTabBarList()
+        locationManager.getCurrentLocation(completion: fetchWeather)
     }
 
     private func fetchWeather(_ location: CLLocationCoordinate2D) {

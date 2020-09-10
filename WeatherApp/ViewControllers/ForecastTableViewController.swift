@@ -22,13 +22,18 @@ class ForecastTableViewController: UITableViewController, Initializable {
 
     private func createUI() {
         forecast = viewModel?.forecast ?? [(key: String, value: [WeatherItem])]()
-        self.tableView.reloadData()
+        
+        title = viewModel?.cityName
+        tableView.backgroundColor = .white
+        tableView.separatorColor = .white
+        tableView.reloadData()
     }
     
     private func createDayNameHeader(forSection section: Int) -> UIView {
         let container = UIView()
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 10, height: 50))
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.textColor = .black
         container.backgroundColor = .green
         container.heightAnchor.constraint(equalToConstant: 50).isActive = true
         let dayName = self.forecast[section].key

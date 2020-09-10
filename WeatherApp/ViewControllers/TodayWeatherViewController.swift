@@ -11,7 +11,11 @@ class TodayWeatherViewController: UIViewController, Initializable {
         return stackView
     }()
     private var weatherIcon: UIImageView = UIImageView()
-    private var city: UILabel = UILabel()
+    private var city: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        return label
+    }()
     private var temperature: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 30.0)
@@ -153,6 +157,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
         let view = UIView()
         let valueLabel = UILabel()
         valueLabel.font = UIFont.systemFont(ofSize: 12)
+        valueLabel.textColor = .black
         valueLabel.text = value
         let image = UIImageView(image: UIImage(named: iconName))
         image.tintColor = .blue
