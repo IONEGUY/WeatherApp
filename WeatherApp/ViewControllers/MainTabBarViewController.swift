@@ -8,34 +8,53 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private var searchController: UISearchController?
     private let weatherService = WeatherService()
     private let networkConnectionService = NetworkConnectionService()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         delegate = self
         
-        initWeather()
+        updateWeather()
         trackNetworkConnection()
         updateTitle()
         configureSearchController()
         initTabBarList()
-
-        navigationItem.rightBarButtonItems = [
-            createBarButtonItem("location", #selector(getCurrentLocation)),
-            createBarButtonItem("magnifyingglass", #selector(openSearchPage))]
+        initBarButtonItems()
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         updateTitle()
     }
     
-    private func initWeather() {
+    private func updateWeather() {
         if let weather: Weather? = CashHelper.getValue(forKey: Strings.weatherKey) {
             self.cityName = weather?.city.name ?? String.empty
             featchWeather(withCityName: self.cityName)
         } else {
             getCurrentLocation()
         }
+    }
+    
+    @objc private func getCurrentLocation() {
+        ActivityIndicatorHelper.show()
+        locationManager.getCurrentLocation(completion: fetchWeather)
+    }
+    
+    @objc private func getWeatherByCityName() {
+        featchWeather(withCityName: self.cityName)
+    }
+
+    @objc private func openSearchPage() {
+        guard let searchController = searchController else { return }
+        present(searchController, animated: true, completion: nil)
+    }
+    
+    private func initBarButtonItems() {
+        navigationItem.leftBarButtonItem =
+            createBarButtonItem("arrow.clockwise", #selector(getWeatherByCityName))
+        navigationItem.rightBarButtonItems = [
+            createBarButtonItem("location", #selector(getCurrentLocation)),
+            createBarButtonItem("magnifyingglass", #selector(openSearchPage))]
     }
 
     private func trackNetworkConnection() {
@@ -95,16 +114,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 ($0 as? Initializable)?.initialize(withData: result)
             }
         }
-    }
-
-    @objc private func getCurrentLocation() {
-        ActivityIndicatorHelper.show()
-        locationManager.getCurrentLocation(completion: fetchWeather)
-    }
-
-    @objc private func openSearchPage() {
-        guard let searchController = searchController else { return }
-        present(searchController, animated: true, completion: nil)
     }
 
     private func createBarButtonItem(_ imageName: String, _ action: Selector) -> UIBarButtonItem {

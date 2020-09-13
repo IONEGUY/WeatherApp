@@ -23,6 +23,7 @@ class ForecastTableViewController: UITableViewController, Initializable {
     private func createUI() {
         forecast = viewModel?.forecast ?? [(key: String, value: [WeatherItem])]()
         
+        tableView.allowsSelection = false
         tableView.reloadData()
     }
     

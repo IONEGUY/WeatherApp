@@ -32,8 +32,16 @@ class WeatherTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func configureElements() {
+    
+    func initCell(_ weatherItem: WeatherItem) {
+        viewModel = WeatherCellViewModel(weatherItem)
+        weatherIcon.initWith(url: viewModel?.iconUrl)
+        timeLabel.text = viewModel?.time
+        weatherDescription.text = viewModel?.weatherDescription
+        temperature.text = viewModel?.temperature
+    }
+    
+    private func configureElements() {
         self.contentView.addSubview(weatherIcon)
         weatherContainer.addSubview(timeLabel)
         weatherContainer.addSubview(weatherDescription)
@@ -41,7 +49,7 @@ class WeatherTableViewCell: UITableViewCell {
         self.contentView.addSubview(temperature)
     }
 
-    func configureConstraints() {
+    private func configureConstraints() {
         configureElements()
         weatherIcon.snp.makeConstraints { make in
             make.width.height.equalTo(50)
@@ -64,13 +72,5 @@ class WeatherTableViewCell: UITableViewCell {
             make.right.equalToSuperview().offset(-20)
             make.top.bottom.equalToSuperview().offset(0)
         }
-    }
-
-    func initCell(_ weatherItem: WeatherItem) {
-        viewModel = WeatherCellViewModel(weatherItem)
-        weatherIcon.initWith(url: viewModel?.iconUrl)
-        timeLabel.text = viewModel?.time
-        weatherDescription.text = viewModel?.weatherDescription
-        temperature.text = viewModel?.temperature
     }
 }
