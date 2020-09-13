@@ -14,7 +14,7 @@ class ForecastTableViewController: UITableViewController, Initializable {
                 weatherModel = success
             case .failure(let error):
                 errorHandler.handle(error.localizedDescription)
-                weatherModel = CashHelper.weather
+                weatherModel = CashHelper.getValue(forKey: Strings.weatherKey)
         }
         self.viewModel = ForecastViewModel(weatherModel)
         self.createUI()
@@ -23,18 +23,14 @@ class ForecastTableViewController: UITableViewController, Initializable {
     private func createUI() {
         forecast = viewModel?.forecast ?? [(key: String, value: [WeatherItem])]()
         
-        title = viewModel?.cityName
-        tableView.backgroundColor = .white
-        tableView.separatorColor = .white
         tableView.reloadData()
     }
     
     private func createDayNameHeader(forSection section: Int) -> UIView {
         let container = UIView()
-        let label = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 10, height: 50))
+        let label = UILabel(frame: CGRect(x: 30, y: 0, width: view.frame.width - 30, height: 50))
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
-        label.textColor = .black
-        container.backgroundColor = .green
+        container.backgroundColor = .separator
         container.heightAnchor.constraint(equalToConstant: 50).isActive = true
         let dayName = self.forecast[section].key
         label.text = section == 0 && dayName == Date.getCurrentDayName()

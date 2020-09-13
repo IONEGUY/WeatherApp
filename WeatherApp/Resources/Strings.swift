@@ -13,4 +13,8 @@ struct Strings {
     static let hoursFormat = "hh"
     static let forecast = "Forecast"
     static let unit = "metric"
+    static let search = "Type city name"
+    static let weatherKey = "weather"
+    static let backOnlineMessage = "Back online"
+    static let noConnectionMessage = "No connection"
 }

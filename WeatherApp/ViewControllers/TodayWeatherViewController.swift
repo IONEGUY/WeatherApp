@@ -6,14 +6,12 @@ class TodayWeatherViewController: UIViewController, Initializable {
     private var weatherDetailedInfoContainer: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .yellow
         stackView.axis = .horizontal
         return stackView
     }()
     private var weatherIcon: UIImageView = UIImageView()
     private var city: UILabel = {
         let label = UILabel()
-        label.textColor = .black
         return label
     }()
     private var temperature: UILabel = {
@@ -30,7 +28,6 @@ class TodayWeatherViewController: UIViewController, Initializable {
         return button
     }()
     
-    private var topOffset = 70
     private var weatherItem: WeatherItem?
     private var cityInfo: City?
     private var didSetupConstraints = false
@@ -40,9 +37,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.today
-        view.backgroundColor = .white
-        
+        view.backgroundColor = .systemBackground
         shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
         
         view.addSubview(weatherBriefInfoContainer)
@@ -84,7 +79,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
                 make.centerX.equalToSuperview()
             }
             weatherDetailedInfoContainer.snp.makeConstraints { make in
-                make.centerY.equalToSuperview().offset(topOffset)
+                make.centerY.equalToSuperview().offset(0)
                 make.right.left.equalToSuperview().offset(0)
             }
             shareButton.snp.makeConstraints { make in
@@ -107,7 +102,7 @@ class TodayWeatherViewController: UIViewController, Initializable {
             case .failure(let error):
                 shareButton.isHidden = true
                 errorHandler.handle(error.localizedDescription)
-                weatherModel = CashHelper.weather
+                weatherModel = CashHelper.getValue(forKey: Strings.weatherKey)
         }
         self.viewModel = TodayWeatherViewModel(weatherModel)
         self.createUI()
@@ -122,32 +117,31 @@ class TodayWeatherViewController: UIViewController, Initializable {
     }
     
     private func createDetailedWeatherSection() {
+        weatherDetailedInfoContainer.subviews.forEach { $0.removeFromSuperview() }
+        
         createWeatherDetailedInfoItem(
             iconName: "rain",
-            value: viewModel?.rainValue,
-            topOffset: -topOffset)
+            value: viewModel?.rainValue)
         createWeatherDetailedInfoItem(
             iconName: "wind",
             value: viewModel?.windValue)
         createWeatherDetailedInfoItem(
             iconName: "precipiation",
-            value: viewModel?.precipiationValue,
-            topOffset: -topOffset)
+            value: viewModel?.precipiationValue)
         createWeatherDetailedInfoItem(
             iconName: "direction",
             value: viewModel?.directionValue)
         createWeatherDetailedInfoItem(
             iconName: "pressure",
-            value: viewModel?.pressureValue,
-            topOffset: -topOffset)
+            value: viewModel?.pressureValue)
         
         view.setNeedsUpdateConstraints()
     }
     
-    private func createWeatherDetailedInfoItem(iconName: String, value: String?, topOffset: Int = 0) {
+    private func createWeatherDetailedInfoItem(iconName: String, value: String?) {
         guard let value = value else { return }
         
-        let weatherDetailedInfoItem = buildWeatherDetailedInfoItem(iconName, value, topOffset)
+        let weatherDetailedInfoItem = buildWeatherDetailedInfoItem(iconName, value)
         weatherDetailedInfoContainer.addArrangedSubview(weatherDetailedInfoItem.view)
         createConstraintsForWeatherDetailedInfoItem(weatherDetailedInfoItem)
     }
@@ -157,18 +151,17 @@ class TodayWeatherViewController: UIViewController, Initializable {
         let view = UIView()
         let valueLabel = UILabel()
         valueLabel.font = UIFont.systemFont(ofSize: 12)
-        valueLabel.textColor = .black
         valueLabel.text = value
-        let image = UIImageView(image: UIImage(named: iconName))
-        image.tintColor = .blue
+        let image = UIImageView(image: UIImage(named: iconName)?.withTintColor(.blue))
         view.addSubview(image)
         view.addSubview(valueLabel)
         return (view, image, valueLabel)
     }
     
-    private func createConstraintsForWeatherDetailedInfoItem(_ weatherDetailedInfoItem: (view: UIView, image: UIImageView, valueLabel: UILabel)) {
+    private func createConstraintsForWeatherDetailedInfoItem(_ weatherDetailedInfoItem:
+        (view: UIView, image: UIImageView, valueLabel: UILabel)) {
         weatherDetailedInfoItem.view.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(topOffset)
+            make.top.equalToSuperview().offset(0)
             make.height.width.equalTo(50)
             make.top.equalToSuperview().offset(10)
         }

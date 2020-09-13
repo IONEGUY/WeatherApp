@@ -9,7 +9,7 @@ extension UITableView {
 
     func dequeueReusableCell<T: UITableViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableCell(withIdentifier: type.typeName, for: indexPath) as? T else {
-            fatalError("Could not dequeue cell with type \(type.typeName)")
+            return T()
         }
         
         return cell

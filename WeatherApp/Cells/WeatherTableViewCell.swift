@@ -4,7 +4,6 @@ import SnapKit
 class WeatherTableViewCell: UITableViewCell {
     private var timeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 15.0)
         return label
     }()
@@ -17,7 +16,6 @@ class WeatherTableViewCell: UITableViewCell {
     }()
     private var weatherDescription: UILabel = {
         let label = UILabel()
-        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 12.0)
         return label
     }()
@@ -74,7 +72,5 @@ class WeatherTableViewCell: UITableViewCell {
         timeLabel.text = viewModel?.time
         weatherDescription.text = viewModel?.weatherDescription
         temperature.text = viewModel?.temperature
-        
-        backgroundColor = .white
     }
 }
